@@ -1,4 +1,4 @@
-const UserOrderPage = () => {
+const UserOrdersPage = () => {
 
     return(
         <>
@@ -7,4 +7,4 @@ const UserOrderPage = () => {
     )
 }
 
-export default UserOrderPage;
+export default UserOrdersPage;
