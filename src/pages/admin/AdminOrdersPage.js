@@ -1,6 +1,6 @@
 import { Row, Col, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import AdminLinksComponent from "../../components/AdminLinksComponent";
+import AdminLinksComponent from "../../components/admin/AdminLinksComponent";
 
 const AdminOrdersPage = () => {
   return (
