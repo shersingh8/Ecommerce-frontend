@@ -4,6 +4,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FooterComponent from "./components/FooterComponent";
 import HeaderComponent from "./components/HeaderComponent";
 
+// user components
+import RoutesWithUserChatComponent from "./components/user/RoutesWithUserChatComponent";
+
 //publicly avilable routes: 
 import HomePage from "./pages/HomePage";
 import ProductListPage from "./pages/ProductListPage";
@@ -18,6 +21,7 @@ import UserCartdetailsPage from "./pages/user/UserCartDetailsPage";
 import UserOrderPage from "./pages/user/UserOrderPage";
 import UserOrderDetailsPage from "./pages/user/UserOrderDetailsPage";
 import ProtectedRoutesComponent from "./components/ProtectedRoutesComponent";
+import UserMyOrdersPage from "./pages/user/UserMyOrdersPage";
 
 // Admin protected pages:
 import AdminAnalaysticsPage from "./pages/admin/AdminAnalaysticsPage";
@@ -37,8 +41,9 @@ function App() {
 <HeaderComponent/>
 <Routes>
 
-  {/* publicly avilable routes:  */}
+<Route element={<RoutesWithUserChatComponent admin={false}/>}>
 
+  {/* publicly avilable routes:  */}
   <Route path="/" element={ <HomePage/>}/>
   <Route path="/product-list" element={ <ProductListPage/>}/>
   <Route path="/cart" element={ <CartPage/>}/>
@@ -47,18 +52,23 @@ function App() {
   <Route path="/login" element={ <LoginPage/>}/>
   <Route path="*" element={ <h1>Page not exists 404</h1>}/>
 
+</Route>
 
 {/* protected user routes:  */}
-<Route element={<ProtectedRoutesComponent/>} admin={false}>
+<Route element={<ProtectedRoutesComponent/>} >
 <Route path="/user" element={ <UserProfilePage/>}/>
   <Route path="/my-order" element={ <UserOrderPage/>}/>
+  <Route path="user/my-orders" element={ <UserMyOrdersPage/>}/>
   <Route path="/cart-details" element={ <UserCartdetailsPage/>}/>
   <Route path="/order-details" element={ <UserOrderDetailsPage/>}/>
 </Route>
 
+
+
+
 {/* Admin protected pages: */}
 
-<Route element={<ProtectedRoutesComponent/>} admin={true}>
+<Route element={<ProtectedRoutesComponent admin={true}/>}>
 <Route path="/admin/users" element={ <AdminUserPage/>}/>
 <Route path="/admin/edit-user" element={ <AdminUserPage/>}/>
 <Route path="/admin/product" element={ <AdminProductPage/>}/>
@@ -69,8 +79,6 @@ function App() {
 <Route path="/admin/edit-user" element={ <AdminEditUserPage/>}/>
 <Route path="/admin/order-details" element={ <AdminOrderDetailsPage/>}/>
 <Route path="/admin/analaystics" element={ <AdminAnalaysticsPage/>}/>
-
-
 </Route>
 
 </Routes>
